@@ -9,6 +9,7 @@ from datetime import datetime
 from data_loader import load_data, preprocess_data
 from evaluate import evaluate
 from model import train_model
+import os
 
 # Configurar logging (consola + archivo)
 logging.basicConfig(
@@ -37,6 +38,8 @@ MODEL_DIR = PROJECT_ROOT / "models"
 MODEL_DIR.mkdir(exist_ok=True)
 
 def main():
+    mlflow.set_tracking_uri(os.getenv('MLFLOW_URI', 'http://localhost:5000'))
+    mlflow.set_experiment(os.getenv('EXPERIMENT_NAME', 'experiment_name_not_found'))
     script_start = time.time()
     logger.info(f"System info: {platform.platform()}")
 
