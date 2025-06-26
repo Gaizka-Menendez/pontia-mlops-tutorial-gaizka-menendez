@@ -4,7 +4,7 @@ import numpy as np
 from io import StringIO
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-from data_loader import load_data, preprocess_data  # Update this import path as needed
+from src.data_loader import load_data, preprocess_data  # Update this import path as needed
 
 @pytest.fixture
 def sample_csv_data():
@@ -28,7 +28,7 @@ def test_load_data(sample_csv_data):
     assert train_df.shape[0] == 2
     assert test_df.shape[0] == 2
     assert "income" in test_df.columns
-    assert not test_df["income"].str.contains("\.").any(), "Periods were not removed from test income column"
+    assert not test_df["income"].str.contains(r"\.").any(), "Periods were not removed from test income column"
 
 def test_preprocess_data(sample_csv_data):
     train_csv, test_csv = sample_csv_data
