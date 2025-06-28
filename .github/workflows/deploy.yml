@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-        MODEL_NAME: adult-income-gaizka-menendez
+        MODEL_NAME: ${{vars.MODEL_NAME}}
         MODEL_ALIAS: champion
         AZURE_CONTAINER_NAME: model-api-gaizka-menendez
         IMAGE_NAME: model-api-gaizka-menendez
@@ -34,7 +34,7 @@ jobs:
 
       - name: Push Docker image to ACR
         run: |
-          docker push ${{ secrets.ACR_NAME }}/model-api
+          docker push ${{ secrets.ACR_NAME }}/${{ env.IMAGE_NAME }}
 
       - name: Deploy to Azure Container Instances
         run: |
