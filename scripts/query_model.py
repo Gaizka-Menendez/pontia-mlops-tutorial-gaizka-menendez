@@ -1,6 +1,6 @@
 import requests
 
-API_URL = "http://model-api-test-15761373539.eastus.azurecontainer.io:8080/predict"
+API_URL = "http://model-api-gaizka-menendez-15948481287.eastus.azurecontainer.io:8080/predict"
 
 payload = {
   "age": 38,
